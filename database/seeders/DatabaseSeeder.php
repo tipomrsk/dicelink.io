@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Player;
 use App\Models\Table;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         Table::factory(10)->create();
+        Player::factory(10)->create();
 
         User::factory()->create([
             'name' => 'user',

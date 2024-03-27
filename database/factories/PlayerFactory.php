@@ -19,8 +19,8 @@ class PlayerFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
-            'password' => '$2y$10$' . $this->faker->sha256,
-            'avatar' => $this->faker->imageUrl(),
+            'password' => '$2y$10$'.$this->faker->sha256,
+            'avatar' => 'https://i.pravatar.cc/300?img='.fake()->numberBetween(1, 70),
             'phone' => $this->faker->phoneNumber,
             'address' => $this->faker->address,
             'city' => $this->faker->city,

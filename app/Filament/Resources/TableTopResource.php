@@ -3,8 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TableTopResource\Pages;
-use Filament\Forms\Form;
 use Filament\Forms\Components;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -47,7 +47,6 @@ class TableTopResource extends Resource
                         Components\TextInput::make('state')->label('Estado'),
                         Components\TextInput::make('country')->label('País'),
                         Components\Textarea::make('obs')->label('Observação'),
-
                     ]),
             ]);
     }
