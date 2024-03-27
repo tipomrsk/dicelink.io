@@ -12,7 +12,9 @@ class TableTopResource extends Resource
 {
     protected static ?string $model = \App\Models\Table::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
+
+    protected static ?string $label = 'Mesas';
 
     public static function form(Form $form): Form
     {
