@@ -6,7 +6,6 @@ use App\Models\Table;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use function Laravel\Prompts\password;
 
 class DatabaseSeeder extends Seeder
 {
