@@ -9,9 +9,9 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class TableTopResource extends Resource
+class CampaingResource extends Resource
 {
-    protected static ?string $model = \App\Models\Table::class;
+    protected static ?string $model = \App\Models\Campaing::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
 

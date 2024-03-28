@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Enums\Tables\HasMaster;
-use App\Enums\Tables\IsOnline;
-use App\Enums\Tables\Status;
+use App\Enums\Campaings\HasMaster;
+use App\Enums\Campaings\IsOnline;
+use App\Enums\Campaings\Status;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Table extends Model
+class Campaing extends Model
 {
     use HasFactory, HasUuids;
 

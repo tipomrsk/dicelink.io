@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources\TableTopResource\Pages;
 
-use App\Filament\Resources\TableTopResource;
+use App\Filament\Resources\CampaingResource;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateTableTop extends CreateRecord
 {
-    protected static string $resource = TableTopResource::class;
+    protected static string $resource = CampaingResource::class;
 }

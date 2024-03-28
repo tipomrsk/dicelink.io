@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums\Tables;
+namespace App\Enums\Campaings;
 
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasDescription;
@@ -23,8 +23,8 @@ enum HasMaster: int implements HasColor, HasDescription, HasLabel
     public function getDescription(): ?string
     {
         return match ($this) {
-            self::HAS_MASTER => 'Has Master on Table',
-            self::NO_MASTER => 'No Master on Table',
+            self::HAS_MASTER => 'Has Master on Campaing',
+            self::NO_MASTER => 'No Master on Campaing',
         };
     }
 

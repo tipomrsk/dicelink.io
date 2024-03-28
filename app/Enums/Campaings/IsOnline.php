@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums\Tables;
+namespace App\Enums\Campaings;
 
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
