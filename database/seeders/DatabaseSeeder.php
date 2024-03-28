@@ -4,9 +4,11 @@ namespace Database\Seeders;
 
 use App\Models\Player;
 use App\Models\Campaing;
+use App\Models\PlayerCampaing;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +21,13 @@ class DatabaseSeeder extends Seeder
 
         Campaing::factory(10)->create();
         Player::factory(10)->create();
+
+        for ($i = 0; $i < 10; $i++) {
+            DB::table('player_campaings')->insert([
+                'player_uuid' => Player::all()->random()->uuid,
+                'campaing_uuid' => Campaing::all()->random()->uuid,
+            ]);
+        }
 
         User::factory()->create([
             'name' => 'user',
