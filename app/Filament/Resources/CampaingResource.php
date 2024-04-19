@@ -56,7 +56,7 @@ class CampaingResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->label('Nome')->searchable(),
-                Tables\Columns\TextColumn::make('description')->label('Descrição')->limit(30),
+                Tables\Columns\TextColumn::make('description')->label('Descrição'),
                 Tables\Columns\TextColumn::make('status')->badge(),
                 Tables\Columns\TextColumn::make('seats')->label('Assentos'),
                 Tables\Columns\TextColumn::make('has_master')->label('Tem Mestre')->badge(),
@@ -66,7 +66,7 @@ class CampaingResource extends Resource
                 Tables\Columns\TextColumn::make('city')->label('Cidade'),
                 Tables\Columns\TextColumn::make('state')->label('Estado'),
                 Tables\Columns\TextColumn::make('country')->label('País'),
-                Tables\Columns\TextColumn::make('obs')->label('Observação')->limit(100),
+                Tables\Columns\TextColumn::make('obs')->label('Observação'),
             ])
             ->filters([
                 //
