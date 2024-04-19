@@ -4,11 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PlayerResource\Pages;
 use App\Models\Player;
-use Filament\Forms\Components;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\{TextColumn, ImageColumn};
+use Filament\Forms\Components\{TextInput, Textarea, FileUpload, Section};
 
 class PlayerResource extends Resource
 {
@@ -22,26 +23,26 @@ class PlayerResource extends Resource
     {
         return $form
             ->schema([
-                Components\Section::make('Jogador')
+                Section::make('Jogador')
                     ->aside()
                     ->icon('heroicon-o-user-circle')
                     ->description('Adicione ou edite um jogador.')
                     ->schema([
-                        Components\TextInput::make('name')->label('Nome')
+                        TextInput::make('name')->label('Nome')
                             ->required()
                             ->autofocus(),
-                        Components\TextInput::make('email')->label('E-mail')
+                        TextInput::make('email')->label('E-mail')
                             ->required()
                             ->email(),
-                        Components\TextInput::make('password')->label('Senha')
+                        TextInput::make('password')->label('Senha')
                             ->required()
                             ->password(),
-                        Components\TextInput::make('phone')->label('Telefone'),
-                        Components\Textarea::make('address')->label('Endereço'),
-                        Components\TextInput::make('city')->label('Cidade'),
-                        Components\TextInput::make('country')->label('País'),
-                        Components\TextInput::make('postal_code')->label('CEP'),
-                        Components\FileUpload::make('avatar')->label('Avatar')
+                        TextInput::make('phone')->label('Telefone'),
+                        Textarea::make('address')->label('Endereço'),
+                        TextInput::make('city')->label('Cidade'),
+                        TextInput::make('country')->label('País'),
+                        TextInput::make('postal_code')->label('CEP'),
+                        FileUpload::make('avatar')->label('Avatar')
                             ->image()
                             ->required()
                             ->directory('images/players'),
@@ -54,17 +55,17 @@ class PlayerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('avatar')->label('Avatar')
+                ImageColumn::make('avatar')->label('Avatar')
                     ->circular(),
-                Tables\Columns\TextColumn::make('name')->label('Nome')
+                TextColumn::make('name')->label('Nome')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('email')->label('E-mail'),
-                Tables\Columns\TextColumn::make('phone')->label('Telefone'),
-                Tables\Columns\TextColumn::make('address')->label('Endereço'),
-                Tables\Columns\TextColumn::make('city')->label('Cidade'),
-                Tables\Columns\TextColumn::make('country')->label('País'),
-                Tables\Columns\TextColumn::make('postal_code')->label('CEP'),
+                TextColumn::make('email')->label('E-mail'),
+                TextColumn::make('phone')->label('Telefone'),
+                TextColumn::make('address')->label('Endereço'),
+                TextColumn::make('city')->label('Cidade'),
+                TextColumn::make('country')->label('País'),
+                TextColumn::make('postal_code')->label('CEP'),
             ])
             ->filters([
                 //

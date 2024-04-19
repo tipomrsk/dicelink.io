@@ -3,12 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TableTopResource\Pages;
-use Filament\Forms\Components;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\{TextInput, Textarea, Select, DatePicker, Section};
 class CampaingResource extends Resource
 {
     protected static ?string $model = \App\Models\Campaing::class;
@@ -21,32 +21,32 @@ class CampaingResource extends Resource
     {
         return $form
             ->schema([
-                Components\Section::make('Mesa')
+                Section::make('Mesa')
                     ->aside()
                     ->icon('heroicon-o-light-bulb')
                     ->description('Adicione ou edite uma mesa.')
                     ->schema([
-                        Components\TextInput::make('name')->label('Nome')->required(),
-                        Components\Textarea::make('description')->label('Descrição'),
-                        Components\Select::make('status')->label('Status')->options([
+                        TextInput::make('name')->label('Nome')->required(),
+                        Textarea::make('description')->label('Descrição'),
+                        Select::make('status')->label('Status')->options([
                             'available' => 'Disponível',
                             'unavailable' => 'Indisponível',
                         ])->required(),
-                        Components\TextInput::make('seats')->label('Assentos')->required(),
-                        Components\Select::make('has_master')->label('Tem Mestre')->options([
+                        TextInput::make('seats')->label('Assentos')->required(),
+                        Select::make('has_master')->label('Tem Mestre')->options([
                             '1' => 'Sim',
                             '0' => 'Não',
                         ])->required(),
-                        Components\DatePicker::make('start_date')->label('Data Inicio')->required(),
-                        Components\Select::make('is_online')->label('Tipo')->options([
+                        DatePicker::make('start_date')->label('Data Inicio')->required(),
+                        Select::make('is_online')->label('Tipo')->options([
                             '1' => 'Online',
                             '0' => 'Presencial',
                         ])->required(),
-                        Components\Textarea::make('address')->label('Endereço'),
-                        Components\TextInput::make('city')->label('Cidade'),
-                        Components\TextInput::make('state')->label('Estado'),
-                        Components\TextInput::make('country')->label('País'),
-                        Components\Textarea::make('obs')->label('Observação'),
+                        Textarea::make('address')->label('Endereço'),
+                        TextInput::make('city')->label('Cidade'),
+                        TextInput::make('state')->label('Estado'),
+                        TextInput::make('country')->label('País'),
+                        Textarea::make('obs')->label('Observação'),
                     ]),
             ]);
     }
@@ -55,18 +55,18 @@ class CampaingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Nome')->searchable(),
-                Tables\Columns\TextColumn::make('description')->label('Descrição'),
-                Tables\Columns\TextColumn::make('status')->badge(),
-                Tables\Columns\TextColumn::make('seats')->label('Assentos'),
-                Tables\Columns\TextColumn::make('has_master')->label('Tem Mestre')->badge(),
-                Tables\Columns\TextColumn::make('start_date')->label('Data Inicio')->searchable()->sortable()->date('d/m/Y'),
-                Tables\Columns\TextColumn::make('is_online')->label('Tipo')->badge(),
-                Tables\Columns\TextColumn::make('address')->label('Endereço'),
-                Tables\Columns\TextColumn::make('city')->label('Cidade'),
-                Tables\Columns\TextColumn::make('state')->label('Estado'),
-                Tables\Columns\TextColumn::make('country')->label('País'),
-                Tables\Columns\TextColumn::make('obs')->label('Observação'),
+                TextColumn::make('name')->label('Nome')->searchable(),
+                TextColumn::make('description')->label('Descrição')->words(50),
+                TextColumn::make('status')->badge(),
+                TextColumn::make('seats')->label('Assentos'),
+                TextColumn::make('has_master')->label('Tem Mestre')->badge(),
+                TextColumn::make('start_date')->label('Data Inicio')->searchable()->sortable()->date('d/m/Y'),
+                TextColumn::make('is_online')->label('Tipo')->badge(),
+                TextColumn::make('address')->label('Endereço'),
+                TextColumn::make('city')->label('Cidade'),
+                TextColumn::make('state')->label('Estado'),
+                TextColumn::make('country')->label('País'),
+                TextColumn::make('obs')->label('Observação')->words(20),
             ])
             ->filters([
                 //
