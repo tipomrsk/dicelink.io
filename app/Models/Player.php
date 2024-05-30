@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Player extends Model
 {
@@ -40,5 +41,10 @@ class Player extends Model
     public function uniqueIds(): array
     {
         return ['uuid'];
+    }
+
+    public function campaings(): BelongsToMany
+    {
+        return $this->belongsToMany(Campaing::class, 'player_campaings', 'player_uuid', 'campaing_uuid');
     }
 }

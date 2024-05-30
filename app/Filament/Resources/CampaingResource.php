@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\CampaingResource\RelationManagers\PlayerCampaingRelationManager;
 use App\Filament\Resources\TableTopResource\Pages;
+use App\Models\Campaing;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -11,7 +13,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\{TextInput, Textarea, Select, DatePicker, Section};
 class CampaingResource extends Resource
 {
-    protected static ?string $model = \App\Models\Campaing::class;
+    protected static ?string $model = Campaing::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
 
@@ -28,20 +30,24 @@ class CampaingResource extends Resource
                     ->schema([
                         TextInput::make('name')->label('Nome')->required(),
                         Textarea::make('description')->label('Descrição'),
-                        Select::make('status')->label('Status')->options([
-                            'available' => 'Disponível',
-                            'unavailable' => 'Indisponível',
-                        ])->required(),
+                        Select::make('status')->label('Status')
+                            ->options([
+                                'available' => 'Disponível',
+                                'unavailable' => 'Indisponível',
+                            ])->required(),
                         TextInput::make('seats')->label('Assentos')->required(),
-                        Select::make('has_master')->label('Tem Mestre')->options([
-                            '1' => 'Sim',
-                            '0' => 'Não',
-                        ])->required(),
+                        Select::make('has_master')->label('Tem Mestre')
+                            ->options([
+                                '1' => 'Sim',
+                                '0' => 'Não',
+                            ])
+                            ->required(),
                         DatePicker::make('start_date')->label('Data Inicio')->required(),
-                        Select::make('is_online')->label('Tipo')->options([
-                            '1' => 'Online',
-                            '0' => 'Presencial',
-                        ])->required(),
+                        Select::make('is_online')->label('Tipo')
+                            ->options([
+                                '1' => 'Online',
+                                '0' => 'Presencial',
+                            ])->required(),
                         Textarea::make('address')->label('Endereço'),
                         TextInput::make('city')->label('Cidade'),
                         TextInput::make('state')->label('Estado'),
@@ -84,7 +90,7 @@ class CampaingResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PlayerCampaingRelationManager::class,
         ];
     }
 
