@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Campaing;
-use Exception;
+use App\Models\Player;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class CampaingController extends Controller
+class PlayerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index()
     {
         try {
-            return response()->json(Campaing::all(), Response::HTTP_OK);
+            return response()->json(Player::all(), Response::HTTP_OK);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -26,12 +26,12 @@ class CampaingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         try {
-            return response()->json(Campaing::create($request->all()), Response::HTTP_CREATED);
+            return response()->json(Player::create($request->all()), Response::HTTP_CREATED);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -39,12 +39,12 @@ class CampaingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Campaing $campaing)
+    public function show(Player $player): JsonResponse
     {
         try {
-            return response()->json($campaing, Response::HTTP_OK);
+            return response()->json($player, Response::HTTP_OK);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -52,13 +52,13 @@ class CampaingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Campaing $campaing)
+    public function update(Request $request, Player $player)
     {
         try {
-            $campaing->update($request->all());
-            return response()->json($campaing, Response::HTTP_OK);
+            $player->update($request->all());
+            return response()->json($player, Response::HTTP_OK);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -66,13 +66,13 @@ class CampaingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Campaing $campaing)
+    public function destroy(Player $player): JsonResponse
     {
         try {
-            $campaing->delete();
-            return response()->json(null, Response::HTTP_ACCEPTED);
+            $player->delete();
+            return response()->json(null, Response::HTTP_NO_CONTENT);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
