@@ -2,16 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CampaingResource\RelationManagers\PlayerCampaingRelationManager;
 use App\Filament\Resources\CampaingResource\RelationManagers\PlayersRelationManager;
 use App\Filament\Resources\TableTopResource\Pages;
 use App\Models\Campaing;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\{TextInput, Textarea, Select, DatePicker, Section};
+use Filament\Tables\Table;
+
 class CampaingResource extends Resource
 {
     protected static ?string $model = Campaing::class;
@@ -25,7 +29,6 @@ class CampaingResource extends Resource
         return $form
             ->schema([
                 Section::make('Mesa')
-                    ->aside()
                     ->icon('heroicon-o-light-bulb')
                     ->description('Adicione ou edite uma mesa.')
                     ->schema([
@@ -91,7 +94,7 @@ class CampaingResource extends Resource
     public static function getRelations(): array
     {
         return [
-            PlayersRelationManager::class
+            PlayersRelationManager::class,
         ];
     }
 

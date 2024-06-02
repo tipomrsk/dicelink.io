@@ -17,8 +17,7 @@ class CampaingController extends Controller
     {
         try {
             return response()->json(Campaing::all(), Response::HTTP_OK);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -30,8 +29,7 @@ class CampaingController extends Controller
     {
         try {
             return response()->json(Campaing::create($request->all()), Response::HTTP_CREATED);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -43,8 +41,7 @@ class CampaingController extends Controller
     {
         try {
             return response()->json($campaing, Response::HTTP_OK);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -56,9 +53,9 @@ class CampaingController extends Controller
     {
         try {
             $campaing->update($request->all());
+
             return response()->json($campaing, Response::HTTP_OK);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -70,9 +67,9 @@ class CampaingController extends Controller
     {
         try {
             $campaing->delete();
+
             return response()->json(null, Response::HTTP_ACCEPTED);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

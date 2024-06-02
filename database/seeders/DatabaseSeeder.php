@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Player;
 use App\Models\Campaing;
-use App\Models\PlayerCampaing;
+use App\Models\Player;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;

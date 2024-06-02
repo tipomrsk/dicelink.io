@@ -23,4 +23,6 @@ Route::group(['prefix' => 'players'], function () {
     Route::get('/{player}', [PlayerController::class, 'show']);
     Route::put('/{player}', [PlayerController::class, 'update']);
     Route::delete('/{player}', [PlayerController::class, 'destroy']);
+    Route::post('/attach-to-campaing', [PlayerController::class, 'attachToCampaing']);
+    Route::post('/detach-from-campaing', [PlayerController::class, 'detachFromCampaing']);
 });

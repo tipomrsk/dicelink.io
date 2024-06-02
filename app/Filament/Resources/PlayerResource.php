@@ -4,12 +4,16 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PlayerResource\Pages;
 use App\Models\Player;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Filament\Tables\Columns\{TextColumn, ImageColumn};
-use Filament\Forms\Components\{TextInput, Textarea, FileUpload, Section};
 
 class PlayerResource extends Resource
 {
