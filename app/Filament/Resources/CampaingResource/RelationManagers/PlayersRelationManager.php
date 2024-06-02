@@ -18,9 +18,7 @@ class PlayersRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+                //
             ]);
     }
 
@@ -40,11 +38,10 @@ class PlayersRelationManager extends RelationManager
                 Tables\Actions\AttachAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
                 Tables\Actions\DetachAction::make(),
             ])
             ->bulkActions([
-             //
+                //
             ]);
     }
 }
