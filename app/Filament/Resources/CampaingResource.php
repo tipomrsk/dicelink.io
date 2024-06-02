@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CampaingResource\RelationManagers\PlayerCampaingRelationManager;
+use App\Filament\Resources\CampaingResource\RelationManagers\PlayersRelationManager;
 use App\Filament\Resources\TableTopResource\Pages;
 use App\Models\Campaing;
 use Filament\Forms\Form;
@@ -90,7 +91,7 @@ class CampaingResource extends Resource
     public static function getRelations(): array
     {
         return [
-            PlayerCampaingRelationManager::class,
+            PlayersRelationManager::class
         ];
     }
 
