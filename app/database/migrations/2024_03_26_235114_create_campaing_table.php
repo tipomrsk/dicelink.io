@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid()->primary()->index();
             $table->string('name');
             $table->string('description');
+            $table->string('owner_id');
             $table->enum('status', ['available', 'unavailable'])->default('available');
             $table->integer('seats');
             $table->boolean('has_master');

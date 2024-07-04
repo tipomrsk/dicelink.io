@@ -1,66 +1,155 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# [Rastreio.com]()
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Serviço de rastreio de encomendas. Foi desenvolvimento de uma maneira simples onde o 'cliente' pode consultar as suas entregas e respectivos status.
 
-## About Laravel
+Essa aplicação foi criada com o front desacoplado do back onde toda a comunicação é feita por uma API. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+> "*Pensei em utilizar Livewire para fazer, ficaria realmente fácil, mas muitas coisas que queria implementar não seriam possíveis. Então fiz desacoplado*"
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Importante ter em mente também é que com a estrutura atual, qualquer implementação de serviço de monitoramento fica fácil de ser implementado.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### [Opções de Monitoramento]()
 
-## Learning Laravel
+- **APM**: New Relic ou Datadog.
+- **Client**: LogRocket
+- **Server**: UptimeRobot, NetData
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+> "*Propositalmente não mencionei **ElasticSearch** para APM, ou **Grafana com Prometheus** porque essas stacks por mais impressionantes que sejam quando prontas, manter envolve um custo muito alto de infra, equipe, disponibilidade...*
+>
+> *Acho que o mais apropriado aqui seria o NewRelic, o freemium é bem completo, além disso, a integração com o Laravel é bem simples e muito completa abrangendo até os logs internos, importante ter em mente que para projetos maiores ter um Repositório de Logs é imprescindível*"
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## [Dockerização]()
+### [Containers]()
+- **app**: PHP-FPM
+- **nginx**: NginX
+- **mysql**: MySQL
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### [app]()
 
-## Contributing
+É onde está o fonte da aplicação e todas as configurações dos serviços.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- php.ini (Configurações do PHP)
+- php-fpm.conf (Configurações do PHP-FPM)
+- www.conf (Configurações da web do PHP)
+- opcache.ini (Configurações do OpCache)
 
-## Code of Conduct
+### [web]()
+Configurações do NginX, workers e proxy.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- nginx.conf (Configurações do NginX)
+- app.conf (Configurações do NginX para o container do app)
 
-## Security Vulnerabilities
+### [db]()
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+MySQL com as configurações padrões.
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## [Documentação da API]()
+
+- [Postman Collection](https://www.postman.com/cloudy-crescent-618085/workspace/tipomrsk-public/collection/10062714-114a0d40-ce0f-4dda-a320-0de010c095e7?action=share&creator=10062714)
+
+É importante executar os dois primeiros endpoints para popular o banco de dados na devida ordem.
+
+#### Consulta e Persiste as Transportadoras do Mocky [Executar Primeiro]
+
+```http
+  GET /api/config/consult-persist-company
+```
+
+#### Consulta e Persiste as Entregas do Mocky [Executar Segundo]
+
+```http
+  GET /api/config/consult-persist-orders
+```
+
+
+#### Busca as Entregas de um Destinatário
+```http
+  GET /api/receiver/orders?cpf={cpf}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `cpf`      | `string` | **Obrigatório**. Somente numéricos |
+
+#### Busca os status de uma entrega
+```http
+  GET /api/order/tracking?uuid={uuid}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `uuid`      | `string` | **Obrigatório**. Identificador da entrega |
+
+
+### [Por que um query string no cpf e UUID?]()
+Decidi ir por esse caminho pelo Form Request que o Laravel fornece.
+Poderia ir pelo caminho de montar um DTO com [Laravel Data](https://spatie.be/docs/laravel-data/v3/introduction), mas não achei necessário nesse momento.
+
+---
+
+## [Deploy]()
+
+Para fazer deploy do projeto, você pode rodar executar o docker-compose desse projeto, ou executar o stack-deploy.sh
+
+```bash
+  sudo bash stack-deploy.sh [OPTION]
+```
+
+Option:
+- --production
+
+
+> Importante lembrar que o `stack-deploy.sh` é um arquivo que faz uma série de procedimentos, como instalar/atualizar as dependências do sistema, instalar o docker e docker-compose, **REMOVER CONTAINERS, IMAGENS, VOLUMES E ETC**. Ele foi criado para automatizar o deploy em um server novo.
+
+> Se quiser testar o script, você executar em ambiente de WSL que é rápido para criar e testar, e qualquer problema você pode resetar o ambiente.
+> Siga o `aws-launch-template.sh` para criar um ambiente de testes. 
+
+> O `.env` está configurado para rodar com Docker, caso queira rodar em outro serviço lembre de alterar as configurações. 
+
+#### Migrations
+Migrations são executadas junto do container do app. Caso você opte por rodar o serviço separado em um LaraGon, Wallet, XAMPP, Artisan Serve... **NÃO ESQUEÇA DE EXECUTAR AS MIGRATIONS**
+
+---
+
+## [Stack, Serviços e Patterns]()
+
+**Front-end:** Blade, Components, Bootstrap, JavaScript, jQuery, Axios
+
+**Back-end:** PHP, Laravel
+
+**Infra**: Docker, PHP-FPM, OpCache, NginX
+
+**DB**: MySQL (Migrations e Factories)
+
+**Patterns**: Service Repository, Form Request, Interface,
+
+---
+
+
+## [Rodando os testes]()
+
+Para rodar os testes, rode o seguinte comando.
+Testes Unitários e de Feature criados com [Pest](https://pestphp.com/). Rode as **Factories** antes dos testes.
+
+```bash
+  ./vendor/bin/pest
+```
+
+
+## [Demonstração]()
+
+![gif](/app/public/img/rastreio.gif)
+
+Para facilitar, seguem alguns CPFs e o que é esperado de retorno para cada um:
+
+1. **54795289042** = Retornará entregas
+2. **12345678901** = Não retornará entregas com erro.
+3. **63079983009** = Não retornará entregas com aviso.
+

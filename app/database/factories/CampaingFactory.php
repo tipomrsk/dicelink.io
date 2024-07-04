@@ -19,6 +19,7 @@ class CampaingFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->sentence(),
+            'owner_id' => $this->faker->uuid(),
             'status' => $this->faker->randomElement(['available', 'unavailable']),
             'seats' => $this->faker->numberBetween(1, 10),
             'has_master' => $this->faker->boolean(),

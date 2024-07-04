@@ -15,6 +15,12 @@ Route::group(['prefix' => 'campaings'], function () {
     Route::get('/{campaing}', [CampaingController::class, 'show']);
     Route::put('/{campaing}', [CampaingController::class, 'update']);
     Route::delete('/{campaing}', [CampaingController::class, 'destroy']);
+    Route::get('/player/{player}', [CampaingController::class, 'allByPlayer']);
+    Route::get('/owner/{player}', [CampaingController::class, 'allFromOwner']);
+    // Minhas solicitações
+    // Aceitar solicitação
+    // Recusar solicitação
+    // Preparar banco para receber solicitações
 });
 
 Route::group(['prefix' => 'players'], function () {

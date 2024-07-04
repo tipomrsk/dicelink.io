@@ -26,6 +26,7 @@ class Campaing extends Model
     protected $fillable = [
         'name',
         'description',
+        'owner_id',
         'status',
         'seats',
         'has_master',
