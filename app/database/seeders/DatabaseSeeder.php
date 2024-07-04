@@ -18,6 +18,11 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+        User::factory()->create([
+            'name' => 'user',
+            'email' => 'mateus@teste.com',
+        ]);
+
         Campaing::factory(10)->create();
         Player::factory(10)->create();
 
@@ -27,10 +32,5 @@ class DatabaseSeeder extends Seeder
                 'campaing_uuid' => Campaing::all()->random()->uuid,
             ]);
         }
-
-        User::factory()->create([
-            'name' => 'user',
-            'email' => 'mateus@teste.com',
-        ]);
     }
 }
