@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'mateus@teste.com',
         ]);
 
-        Campaing::factory(10)->create();
-        Player::factory(10)->create();
+        Campaing::factory(60)->create();
+        Player::factory(50)->create();
 
         for ($i = 0; $i < 10; $i++) {
             DB::table('player_campaings')->insert([
