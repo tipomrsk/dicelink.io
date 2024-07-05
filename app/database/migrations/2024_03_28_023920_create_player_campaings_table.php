@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('player_campaings', function (Blueprint $table) {
             $table->uuid('player_uuid');
             $table->uuid('campaing_uuid');
+            $table->enum('request_status', ['pending', 'accepted', 'refused'])->default('pending');
             $table->timestamps();
 
             $table->primary(['player_uuid', 'campaing_uuid']);

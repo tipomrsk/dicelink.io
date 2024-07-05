@@ -102,4 +102,63 @@ class CampaingController extends Controller
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    /**
+     * Get all requests from player.
+     */
+    public function allRequests($player): JsonResponse
+    {
+        try {
+            return response()->json(
+                Campaing::select('campaings.*', 'request_status')
+                    ->join('player_campaings', 'player_campaings.campaing_uuid', '=', 'campaings.uuid')
+                    ->where('player_campaings.player_uuid', $player)
+                    ->where('player_campaings.request_status', 'pending')
+                    ->get(),
+                Response::HTTP_OK
+            );
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Accept a request from player.
+     */
+    public function acceptRequest(Request $request): JsonResponse
+    {
+        try {
+            $player = $request->input('player');
+            $campaing = $request->input('campaing');
+
+            Campaing::join('player_campaings', 'player_campaings.campaing_uuid', '=', 'campaings.uuid')
+                ->where('player_campaings.player_uuid', $player)
+                ->where('player_campaings.campaing_uuid', $campaing)
+                ->update(['player_campaings.status' => 'accepted']);
+
+            return response()->json(null, Response::HTTP_ACCEPTED);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Refuse a request from player.
+     */
+    public function refuseRequest(Request $request): JsonResponse
+    {
+        try {
+            $player = $request->input('player');
+            $campaing = $request->input('campaing');
+
+            Campaing::join('player_campaings', 'player_campaings.campaing_uuid', '=', 'campaings.uuid')
+                ->where('player_campaings.player_uuid', $player)
+                ->where('player_campaings.campaing_uuid', $campaing)
+                ->update(['player_campaings.status' => 'refused']);
+
+            return response()->json(null, Response::HTTP_ACCEPTED);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }

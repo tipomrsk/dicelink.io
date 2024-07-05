@@ -17,9 +17,9 @@ Route::group(['prefix' => 'campaings'], function () {
     Route::delete('/{campaing}', [CampaingController::class, 'destroy']);
     Route::get('/player/{player}', [CampaingController::class, 'allByPlayer']);
     Route::get('/owner/{player}', [CampaingController::class, 'allFromOwner']);
-    // Minhas solicitações
-    // Aceitar solicitação
-    // Recusar solicitação
+    Route::get('/player-requests/{player}', [CampaingController::class, 'allRequests']); // NÃO TA FUNCIONANDO!!
+    Route::post('/player-requests/accept', [CampaingController::class, 'acceptRequest']);
+    Route::post('/player-requests/refuse', [CampaingController::class, 'refuseRequest']);
     // Preparar banco para receber solicitações
 });
 
